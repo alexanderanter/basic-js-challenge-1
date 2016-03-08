@@ -102,7 +102,7 @@ exports.getMode = function(data) {
     var result = [];
     var copiedArray = data.slice();
     var frequency = exports.getFrequencyInArray(data);
-    console.log(frequency);
+
     //run in sort array
     //take out index 0 as it will have the highest val
 
@@ -112,12 +112,13 @@ exports.getMode = function(data) {
     keys.forEach(function(key) {
         if (frequency[key] > highestNum) {
             highestNum = frequency[key];
-            result = [key];
+            result = [parseInt(key)];
+
         }else if (frequency[key] === highestNum) {
-            result.push(key);
+            result.push(parseInt(key));
         }
     });
-
+    result.sort();
     return result;
 }
 
