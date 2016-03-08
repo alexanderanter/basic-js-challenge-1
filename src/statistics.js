@@ -83,10 +83,40 @@ exports.getMedian = function(data) {
 
     return result;
 }
+exports.getFrequencyInArray = function(data) {
+    var copiedArray = data.slice();
+    var result = {};
+
+    for (var i = 0; i < copiedArray.length; i++) {
+        if (!result[copiedArray[i]]) {
+            result[copiedArray[i]] = 0;
+        }
+
+        result[copiedArray[i]] += 1;
+    }
+
+    return result;
+}
 
 exports.getMode = function(data) {
-    var result;
+    var result = [];
     var copiedArray = data.slice();
+    var frequency = exports.getFrequencyInArray(data);
+    console.log(frequency);
+    //run in sort array
+    //take out index 0 as it will have the highest val
+
+    var highestNum = 0;
+    var keys = Object.keys(frequency);
+
+    keys.forEach(function(key) {
+        if (frequency[key] > highestNum) {
+            highestNum = frequency[key];
+            result = [key];
+        }else if (frequency[key] === highestNum) {
+            result.push(key);
+        }
+    });
 
     return result;
 }
@@ -94,7 +124,7 @@ exports.getMode = function(data) {
 exports.getRange = function(data) {
     var result;
     var copiedArray = data.slice();
-
+    result = (Array.max(copiedArray) -Array.min(copiedArray));
     return result;
 }
 
@@ -122,12 +152,5 @@ exports.analyze = function(data) {
         range:  rangeVal
     };
     console.log(result);
-    console.log("max value: " + maxVal);
-    console.log("min value: " + minVal);
-    console.log("mean value: " + maxVal);
-    console.log("median value: " + minVal);
-    console.log("mode value: " + minVal);
-    console.log("range value: " + minVal);
-
     return result;
 };
