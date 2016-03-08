@@ -29,6 +29,12 @@ Array.min = function(data) {
 exports.getMean = function(data) {
     var result;
     var copiedArray = data.slice();
+    var totalSum = 0;
+    //get total sum
+    copiedArray.forEach(function(key) {
+        totalSum += key;
+    });
+    result = totalSum / copiedArray.length;
 
     return result;
 }
@@ -63,14 +69,20 @@ exports.analyze = function(data) {
     }
 
     var copiedArray  = data.slice();
-    var result = {};
     var minVal = Array.min(copiedArray);
     var maxVal = Array.max(copiedArray);
     var meanVal = exports.getMean(copiedArray);
     var medianVal = exports.getMedian(copiedArray);
     var modeVal = exports.getMode(copiedArray);
     var rangeVal = exports.getRange(copiedArray);
-
+    var result = {
+        max:    maxVal,
+        mean:   meanVal,
+        median: medianVal,
+        min:    minVal,
+        mode:   modeVal
+    };
+    console.log(result);
     console.log("max value: " + maxVal);
     console.log("min value: " + minVal);
     console.log("mean value: " + maxVal);
