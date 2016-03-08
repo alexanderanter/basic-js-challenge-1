@@ -1,7 +1,7 @@
 /**
  * Module for obtaining descriptive information about a set of data.
  *
- * @author TODO: Write your name here.
+ * @author alexanderanter
  * @version 1.0.0
  */
 
