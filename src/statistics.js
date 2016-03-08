@@ -34,6 +34,7 @@ exports.sortArr = function(data) {
         if (a > b) {
             return -1;
         }
+
         if (a < b) {
             return 1;
         }
@@ -43,19 +44,22 @@ exports.sortArr = function(data) {
     });
 
     return result;
-}
+};
+
 exports.getMean = function(data) {
     var result;
     var copiedArray = data.slice();
     var totalSum = 0;
+
     //get total sum
     copiedArray.forEach(function(key) {
         totalSum += key;
     });
+
     result = totalSum / copiedArray.length;
 
     return result;
-}
+};
 
 exports.getMedian = function(data) {
     var result;
@@ -63,6 +67,7 @@ exports.getMedian = function(data) {
     var topHalf = 0;
     var bottomHalf = 0;
     var middlepoint = 0;
+
     //sort the array with highest value first
     copiedArray = exports.sortArr(copiedArray);
 
@@ -78,7 +83,8 @@ exports.getMedian = function(data) {
     }
 
     return result;
-}
+};
+
 exports.getFrequencyInArray = function(data) {
     var copiedArray = data.slice();
     var result = {};
@@ -87,11 +93,12 @@ exports.getFrequencyInArray = function(data) {
         if (!result[copiedArray[i]]) {
             result[copiedArray[i]] = 0;
         }
+
         result[copiedArray[i]] += 1;
     }
 
     return result;
-}
+};
 
 exports.getMode = function(data) {
     var result = [];
@@ -113,16 +120,17 @@ exports.getMode = function(data) {
             result.push(parseInt(key));
         }
     });
+
     result.sort();
     return result;
-}
+};
 
 exports.getRange = function(data) {
     var result;
     var copiedArray = data.slice();
-    result = (Array.max(copiedArray) -Array.min(copiedArray));
+    result = (Array.max(copiedArray) - Array.min(copiedArray));
     return result;
-}
+};
 
 exports.analyze = function(data) {
     //error handling
@@ -139,7 +147,8 @@ exports.analyze = function(data) {
     var medianVal = exports.getMedian(copiedArray);
     var modeVal = exports.getMode(copiedArray);
     var rangeVal = exports.getRange(copiedArray);
-    var result = {
+
+    return {
         max:    maxVal,
         mean:   meanVal,
         median: medianVal,
@@ -147,6 +156,4 @@ exports.analyze = function(data) {
         mode:   modeVal,
         range:  rangeVal
     };
-
-    return result;
 };
