@@ -26,6 +26,25 @@ Array.min = function(data) {
     return Math.min.apply(Math, data);
 };
 
+exports.sortArr = function(data) {
+    var result;
+    var copiedArray = data.slice();
+
+    result = copiedArray.sort(function(a, b) {
+        if (a > b) {
+            return -1;
+        }
+
+        if (a < b) {
+            return 1;
+        }
+
+        // a must be equal to b
+        return 0;
+    });
+
+    return result;
+}
 exports.getMean = function(data) {
     var result;
     var copiedArray = data.slice();
@@ -34,6 +53,7 @@ exports.getMean = function(data) {
     copiedArray.forEach(function(key) {
         totalSum += key;
     });
+
     result = totalSum / copiedArray.length;
 
     return result;
@@ -42,6 +62,24 @@ exports.getMean = function(data) {
 exports.getMedian = function(data) {
     var result;
     var copiedArray = data.slice();
+    var topHalf = 0;
+    var bottomHalf = 0;
+
+    //sort the array with highest value first
+    copiedArray = exports.sortArr(copiedArray);
+
+    //check if the length is a even number or not
+    if (copiedArray.length % 2 === 0) {
+
+        topHalf = copiedArray.length / 2;
+        bottomHalf = topHalf - 1;
+        result = ((topHalf + bottomHalf) / 2);
+
+    }else {
+
+        result = Math.round(copiedArray.length / 2);
+
+    }
 
     return result;
 }
@@ -80,7 +118,8 @@ exports.analyze = function(data) {
         mean:   meanVal,
         median: medianVal,
         min:    minVal,
-        mode:   modeVal
+        mode:   modeVal,
+        range:  rangeVal
     };
     console.log(result);
     console.log("max value: " + maxVal);
@@ -89,7 +128,6 @@ exports.analyze = function(data) {
     console.log("median value: " + minVal);
     console.log("mode value: " + minVal);
     console.log("range value: " + minVal);
-
 
     return result;
 };
