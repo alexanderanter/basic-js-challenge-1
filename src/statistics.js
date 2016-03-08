@@ -14,10 +14,66 @@
  * @throws {Error} Argument can not be an empty array.
  * @returns {{max: Number, mean: Number, median: Number, min: Number, mode: Array.<Number>, range: Number}}
  */
+
 exports.analyze = function(data) {
+    //error handling
+    if (typeof data !== "object") {
+        throw new TypeError("you didn't send in an array");
+    }else if (data.length < 1) {
+        throw new Error("the array is empty!");
+    }
 
-    // TODO: Write your code here.
+    var copiedArray  = data.slice();
+    var result = {};
+    var minVal = exports.getMin(copiedArray);
+    var maxVal = exports.getMax(copiedArray);
+    var meanVal = exports.getMean(copiedArray);
+    var medianVal = exports.getMedian(copiedArray);
+    var modeVal = exports.getMode(copiedArray);
+    var rangeVal = exports.getRange(copiedArray);
 
+    return result;
 };
 
-// TODO: Write your code here.
+exports.getMin = function(data) {
+    var result;
+    var copiedArray = data.slice();
+
+
+    return result;
+}
+
+exports.getMax = function(data) {
+    var result;
+    var copiedArray = data.slice();
+
+    return result;
+}
+
+exports.getMean = function(data) {
+    var result;
+    var copiedArray = data.slice();
+
+    return result;
+}
+
+exports.getMedian = function(data) {
+    var result;
+    var copiedArray = data.slice();
+
+    return result;
+}
+
+exports.getMode = function(data) {
+    var result;
+    var copiedArray = data.slice();
+
+    return result;
+}
+
+exports.getRange = function(data) {
+    var result;
+    var copiedArray = data.slice();
+
+    return result;
+}
