@@ -34,7 +34,6 @@ exports.sortArr = function(data) {
         if (a > b) {
             return -1;
         }
-
         if (a < b) {
             return 1;
         }
@@ -53,7 +52,6 @@ exports.getMean = function(data) {
     copiedArray.forEach(function(key) {
         totalSum += key;
     });
-
     result = totalSum / copiedArray.length;
 
     return result;
@@ -64,21 +62,19 @@ exports.getMedian = function(data) {
     var copiedArray = data.slice();
     var topHalf = 0;
     var bottomHalf = 0;
-
+    var middlepoint = 0;
     //sort the array with highest value first
     copiedArray = exports.sortArr(copiedArray);
 
     //check if the length is a even number or not
     if (copiedArray.length % 2 === 0) {
+        middlepoint = copiedArray.length / 2;
+        topHalf = copiedArray[middlepoint];
+        bottomHalf = copiedArray[middlepoint - 1];
 
-        topHalf = copiedArray.length / 2;
-        bottomHalf = topHalf - 1;
         result = ((topHalf + bottomHalf) / 2);
-
     }else {
-
-        result = Math.round(copiedArray.length / 2);
-
+        result = (copiedArray[Math.round(copiedArray.length / 2)]);
     }
 
     return result;
@@ -91,7 +87,6 @@ exports.getFrequencyInArray = function(data) {
         if (!result[copiedArray[i]]) {
             result[copiedArray[i]] = 0;
         }
-
         result[copiedArray[i]] += 1;
     }
 
@@ -101,7 +96,7 @@ exports.getFrequencyInArray = function(data) {
 exports.getMode = function(data) {
     var result = [];
     var copiedArray = data.slice();
-    var frequency = exports.getFrequencyInArray(data);
+    var frequency = exports.getFrequencyInArray(copiedArray);
 
     //run in sort array
     //take out index 0 as it will have the highest val
@@ -152,6 +147,6 @@ exports.analyze = function(data) {
         mode:   modeVal,
         range:  rangeVal
     };
-    console.log(result);
+
     return result;
 };
